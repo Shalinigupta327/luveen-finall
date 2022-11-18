@@ -1,0 +1,278 @@
+import 'dart:convert';
+import 'package:luveen/features/home/widgets/single_prescription.dart';
+import 'package:luveen/features/home/widgets/pickImage.dart';
+import 'package:luveen/models/Pres.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'package:luveen/features/home/services/home_services.dart';
+import 'package:luveen/common/widgets/loader.dart';
+
+import '../../../providers/user_provider.dart';
+
+// class PrescriptionScreen extends StatefulWidget {
+//   static const String routeName = '/prescription';
+//   const PrescriptionScreen({Key? key}) : super(key: key);
+
+//   @override
+//   State<PrescriptionScreen> createState() => _PrescriptionScreenState();
+// }
+
+// class _PrescriptionScreenState extends State<PrescriptionScreen> {
+//   List<Pres>? prescriptions;
+//   final HomeServices homeServices = HomeServices();
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     fetchAllPrescription();
+//   }
+
+//   fetchAllPrescription() async {
+//     prescriptions = await homeServices.fetchAllPrescription(context);
+//     setState(() {});
+//   }
+
+//   void deletePrescription(Pres prescription, int index) {
+//     homeServices.deletePrescription(
+//       context: context,
+//       prescription: prescription,
+//       onSuccess: () {
+//         prescriptions!.removeAt(index);
+//         setState(() {});
+//       },
+//     );
+//   }
+
+//   void navigateToAddPrescription() {
+//     Navigator.pushNamed(context, PickImage.routeName);
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//         // final user = context.watch<UserProvider>().user;
+//         //  user.prescription
+//         // // .map((e) => sum += e['quantity'] * e['product']['price'] as int)
+//         // .toList();
+
+//     return prescriptions == null
+//         ? const Loader()
+//         : Scaffold(
+//             body: GridView.builder(
+//               itemCount: prescriptions!.length,
+//                             // itemCount: user.prescription.length,
+
+//               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//                   crossAxisCount: 1),
+//               itemBuilder: (context, index) {
+//                 final prescriptionData = prescriptions![index];
+//                 return Column(
+//                   children: [
+//                     SizedBox(
+//                       height: 140,
+//                       child: SinglePrescription(
+//                         image: prescriptionData.presimages[0],
+//                       ),
+//                     ),
+//                     Row(
+//                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                       children: [
+//                         Expanded(
+//                           child: Text(
+//                             prescriptionData.name,
+//                             overflow: TextOverflow.ellipsis,
+//                             maxLines: 2,
+//                           ),
+//                         ),
+//                         IconButton(
+//                           onPressed: () =>
+//                               deletePrescription(prescriptionData, index),
+//                           icon: const Icon(
+//                             Icons.delete_outline,
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ],
+//                 );
+//               },
+//             ),
+//             floatingActionButton: FloatingActionButton(
+//               child: const Icon(Icons.add),
+//               onPressed: navigateToAddPrescription,
+//               tooltip: 'Add a Prescription',
+//             ),
+//             floatingActionButtonLocation:
+//                 FloatingActionButtonLocation.centerFloat,
+//           );
+//   }
+// }
+
+// iloader.dart';
+
+class PrescriptionScreen extends StatefulWidget {
+  static const String routeName = '/prescription';
+  const PrescriptionScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PrescriptionScreen> createState() => _PrescriptionScreenState();
+}
+
+class _PrescriptionScreenState extends State<PrescriptionScreen> {
+  List<Pres>? prescriptions;
+  final HomeServices homeServices = HomeServices();
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchAllPrescription();
+  // }
+
+  // fetchAllPrescription() async {
+  //   prescriptions = await homeServices.fetchAllPrescription(context);
+  //   setState(() {});
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchMyPrescriptions();
+  }
+
+  void fetchMyPrescriptions() async {
+    prescriptions = await homeServices.fetchMyPrescription(context: context);
+    setState(() {});
+  }
+
+  void deletePrescription(Pres prescription, int index) {
+    homeServices.deletePrescription(
+      context: context,
+      prescription: prescription,
+      onSuccess: () {
+        prescriptions!.removeAt(index);
+        setState(() {});
+      },
+    );
+  }
+
+  void navigateToAddPrescription() {
+    Navigator.pushNamed(context, PickImage.routeName);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //  final user = context.watch<UserProvider>().user;
+//  int sum = 0;
+    // var prescriptions =  user.prescription
+    // .map((e) => sum += e['quantity'] * e['product']['price'] as int)
+    // .toList();
+    return prescriptions == null
+        ? const Loader()
+        : Scaffold(
+            body: ListView.builder(
+              itemCount: prescriptions!.length,
+              itemBuilder: (context, index) {
+                final prescriptionData = prescriptions![index];
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(8.0, 5.0, 8.0, 0),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.15,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      border: Border.all(
+                          width: 1.0,
+                          color: Colors.grey,
+                          style: BorderStyle.solid),
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.12,
+                          width: MediaQuery.of(context).size.height * 0.12,
+                          child: SinglePrescription(
+                            image: prescriptionData.presimages[0],
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.height * 0.65,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    prescriptionData.name,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    prescriptionData.name,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                ),
+                                // IconButton(
+                                //   onPressed: () => deletePrescription(
+                                //       prescriptionData, index),
+                                //   icon: const Icon(
+                                //     Icons.delete_outline,
+                                //   ),
+                                // ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () =>
+                              deletePrescription(prescriptionData, index),
+                          icon: const Icon(
+                            Icons.delete_outline,
+                          ),
+                        ),
+                        Expanded(
+                            child: Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 12.0),
+                          child: VerticalDivider(
+                            color: Colors.green,
+                            width: 2,
+                          ),
+                        )),
+                        Expanded(
+                            child: TextButton(
+                                child: Text(
+                                  " View Reply",
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.green),
+                                ),
+                                onPressed: () {}
+                                // async {
+                                //   const String _url = "https://www.geeksforgeeks.org";
+                                //   if (await canLaunch(_url)) {
+                                //     launch(_url);
+                                //   } else {
+                                //     throw "Could not launch $_url";
+                                //   }
+                                // },
+                                ))
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            floatingActionButton: FloatingActionButton(
+              child: const Icon(Icons.add),
+              onPressed: navigateToAddPrescription,
+              tooltip: 'Add a Prescription',
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+          );
+  }
+}
