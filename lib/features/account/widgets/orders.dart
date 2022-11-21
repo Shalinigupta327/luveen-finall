@@ -5,6 +5,8 @@ import 'package:luveen/features/account/widgets/single_product.dart';
 import 'package:luveen/features/order_details/screens/order_details.dart';
 import 'package:luveen/models/order.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class Orders extends StatefulWidget {
   const Orders({Key? key}) : super(key: key);
@@ -63,15 +65,15 @@ class _OrdersState extends State<Orders> {
                 child: ListView.builder(
                   itemCount: orders!.length,
                   itemBuilder: (context, index) {
+                    final orderData = orders![index];
                     return Padding(
                       padding: const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 5.0),
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
-                            context,
-                            OrderDetailScreen.routeName,
-                            arguments: orders![index],
-                          );
+                              context, OrderDetailScreen.routeName,
+                              // arguments: orders![index],
+                              arguments: orderData);
                         },
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.15,
@@ -106,7 +108,8 @@ class _OrdersState extends State<Orders> {
                                         ),
 
                                         Text(
-                                          " ",
+                                          orderData.id,
+                                          // orders[0].id,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black54,
@@ -131,7 +134,12 @@ class _OrdersState extends State<Orders> {
                                         ),
 
                                         Text(
-                                          "Shalini Gupta",
+                                          // ${orderData.date}
+                                          DateFormat().format(
+                                            DateTime.fromMillisecondsSinceEpoch(
+                                                orderData.orderedAt),
+                                            // widget.order.orderedAt),
+                                          ),
                                           style: TextStyle(
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black54,
@@ -156,7 +164,9 @@ class _OrdersState extends State<Orders> {
                                         ),
 
                                         Text(
-                                          "1",
+                                          orderData.quantity
+                                              .toString()
+                                              .toString(),
                                           style: TextStyle(
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black54,
@@ -181,7 +191,7 @@ class _OrdersState extends State<Orders> {
                                         ),
 
                                         Text(
-                                          " Rs 80",
+                                          orderData.totalPrice.toString(),
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.green,

@@ -225,8 +225,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.normal),
             ),
-            subtitle: new Text(
-                "Wishper Sanitary Pads-Ultra Clean XL-Upto 100% Stain Protection-Whisper brings to you the widest range of sanitary pads for all your period needs. Discover all options designed for the utmost comfort and dryness.Pack of 8\(Each Pack Contains 8 Pads).Wishper Sanitary Pads-Ultra Clean XL-Upto 100% Stain Protection-Whisper brings to you the widest range of sanitary pads for all your period needs. Discover all options designed for the utmost comfort and dryness.Pack of 8\(Each Pack Contains 8 Pads)."),
+            subtitle: new Text(widget.product.description),
           ),
           // ExpansionTile(
           //   title: Text(

@@ -1,3 +1,6 @@
+import 'dart:ffi';
+import 'dart:convert';
+import 'package:intl/intl.dart';
 import 'package:luveen/common/widgets/loader.dart';
 import 'package:luveen/features/account/widgets/single_product.dart';
 import 'package:luveen/features/admin/services/admin_services.dart';
@@ -6,7 +9,11 @@ import 'package:luveen/models/order.dart';
 import 'package:flutter/material.dart';
 
 class OrdersScreen extends StatefulWidget {
-  const OrdersScreen({Key? key}) : super(key: key);
+  // final Order order;
+  const OrdersScreen({
+    Key? key,
+    // required this.order,
+  }) : super(key: key);
 
   @override
   State<OrdersScreen> createState() => _OrdersScreenState();
@@ -85,7 +92,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                     ),
 
                                     Text(
-                                      " ",
+                                      orderData.id,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           color: Colors.black54,
@@ -110,7 +117,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                     ),
 
                                     Text(
-                                      "Shalini Gupta",
+                                      // ${orderData.date}
+                                      DateFormat().format(
+                                        DateTime.fromMillisecondsSinceEpoch(
+                                            orderData.orderedAt),
+                                        // widget.order.orderedAt),
+                                      ),
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           color: Colors.black54,
@@ -135,7 +147,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                     ),
 
                                     Text(
-                                      "1",
+                                      orderData.quantity.toString().toString(),
+                                      // orderData.quantity,
+                                      //  orderData.totalPrice,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
                                           color: Colors.black54,
@@ -160,7 +174,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                     ),
 
                                     Text(
-                                      " Rs 80",
+                                      // "",
+                                      orderData.totalPrice.toString(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: Colors.green,

@@ -242,23 +242,6 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                                 ),
                               ),
                             ),
-
-                            // TextButton(
-                            //     child: Text(
-                            //       " View Reply",
-                            //       style: TextStyle(
-                            //           fontSize: 15, color: Colors.green),
-                            //     ),
-                            //     onPressed: () {}
-                            //     // async {
-                            //     //   const String _url = "https://www.geeksforgeeks.org";
-                            //     //   if (await canLaunch(_url)) {
-                            //     //     launch(_url);
-                            //     //   } else {
-                            //     //     throw "Could not launch $_url";
-                            //     //   }
-                            //     // },
-                            //     )
                           ],
                         ),
                       ),

@@ -32,11 +32,23 @@ class _AdminPrescriptionState extends State<AdminPrescription> {
     setState(() {});
   }
 
+  void deletePrescription(Pres prescription, int index) {
+    adminServices.deletePrescription(
+      context: context,
+      prescription: prescription,
+      onSuccess: () {
+        prescriptions!.removeAt(index);
+        setState(() {});
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return prescriptions == null
         ? const Loader()
         : Scaffold(
+            backgroundColor: Colors.grey.shade100,
             body: ListView.builder(
               itemCount: prescriptions!.length,
               itemBuilder: (context, index) {
@@ -76,14 +88,6 @@ class _AdminPrescriptionState extends State<AdminPrescription> {
                                   maxLines: 2,
                                 ),
                               ),
-
-                              // IconButton(
-                              //   onPressed: () => deletePrescription(
-                              //       prescriptionData, index),
-                              //   icon: const Icon(
-                              //     Icons.delete_outline,
-                              //   ),
-                              // ),
                             ),
                             IconButton(
                               icon: Icon(Icons.chat),
@@ -94,36 +98,19 @@ class _AdminPrescriptionState extends State<AdminPrescription> {
                             SizedBox(
                               width: 15,
                             ),
-                            // Padding(
-                            //   padding: const EdgeInsets.only(right: 20.0),
-                            //   child: Container(
-                            //     color: Colors.grey.shade300,
-                            //     child: IconButton(
-                            //       onPressed: () => deletePrescription(
-                            //           prescriptionData, index),
-                            //       icon: const Icon(
-                            //         Icons.delete_outline,
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
-
-                            // TextButton(
-                            //     child: Text(
-                            //       " View Reply",
-                            //       style: TextStyle(
-                            //           fontSize: 15, color: Colors.green),
-                            //     ),
-                            //     onPressed: () {}
-                            //     // async {
-                            //     //   const String _url = "https://www.geeksforgeeks.org";
-                            //     //   if (await canLaunch(_url)) {
-                            //     //     launch(_url);
-                            //     //   } else {
-                            //     //     throw "Could not launch $_url";
-                            //     //   }
-                            //     // },
-                            //     )
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20.0),
+                              child: Container(
+                                color: Colors.grey.shade300,
+                                child: IconButton(
+                                  onPressed: () => deletePrescription(
+                                      prescriptionData, index),
+                                  icon: const Icon(
+                                    Icons.delete_outline,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
