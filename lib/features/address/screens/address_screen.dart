@@ -1,3 +1,5 @@
+import 'package:khalti_flutter/khalti_flutter.dart';
+import 'package:luveen/common/widgets/custom_button.dart';
 import 'package:luveen/constants/utils.dart';
 import 'package:luveen/features/address/services/address_services.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +22,12 @@ class AddressScreen extends StatefulWidget {
 }
 
 class _AddressScreenState extends State<AddressScreen> {
+  String referenceId = "";
   final TextEditingController flatBuildingController = TextEditingController();
   final TextEditingController areaController = TextEditingController();
   final TextEditingController pincodeController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   final _addressFormKey = GlobalKey<FormState>();
 
   String addressToBeUsed = "";
@@ -31,16 +35,16 @@ class _AddressScreenState extends State<AddressScreen> {
   final AddressServices addressServices = AddressServices();
 
   @override
-  void initState() {
-    super.initState();
-    paymentItems.add(
-      PaymentItem(
-        amount: widget.totalAmount,
-        label: 'Total Amount',
-        status: PaymentItemStatus.final_price,
-      ),
-    );
-  }
+  // void initState() {
+  //   super.initState();
+  //   paymentItems.add(
+  //     PaymentItem(
+  //       amount: widget.totalAmount,
+  //       label: 'Total Amount',
+  //       status: PaymentItemStatus.final_price,
+  //     ),
+  //   );
+  // }
 
   @override
   void dispose() {
@@ -49,58 +53,62 @@ class _AddressScreenState extends State<AddressScreen> {
     areaController.dispose();
     pincodeController.dispose();
     cityController.dispose();
+    phoneController.dispose();
   }
 
-  void onApplePayResult(res) {
-    if (Provider.of<UserProvider>(context, listen: false)
-        .user
-        .address
-        .isEmpty) {
-      addressServices.saveUserAddress(
-          context: context, address: addressToBeUsed);
-    }
-    addressServices.placeOrder(
-      context: context,
-      address: addressToBeUsed,
-      totalSum: double.parse(widget.totalAmount),
-    );
-  }
+  // void onApplePayResult(res) {
+  //   if (Provider.of<UserProvider>(context, listen: false)
+  //       .user
+  //       .address
+  //       .isEmpty) {
+  //     addressServices.saveUserAddress(
+  //         context: context, address: addressToBeUsed);
+  //   }
+  //   addressServices.placeOrder(
+  //     context: context,
+  //     address: addressToBeUsed,
+  //     totalSum: double.parse(widget.totalAmount),
+  //   );
+  // }
 
-  void onGooglePayResult(res) {
-    if (Provider.of<UserProvider>(context, listen: false)
-        .user
-        .address
-        .isEmpty) {
-      addressServices.saveUserAddress(
-          context: context, address: addressToBeUsed);
-    }
-    addressServices.placeOrder(
-      context: context,
-      address: addressToBeUsed,
-      totalSum: double.parse(widget.totalAmount),
-    );
-  }
+  // void onGooglePayResult(res) {
+  //   if (Provider.of<UserProvider>(context, listen: false)
+  //       .user
+  //       .address
+  //       .isEmpty) {
+  //     addressServices.saveUserAddress(
+  //         context: context, address: addressToBeUsed);
+  //   }
+  //   addressServices.placeOrder(
+  //     context: context,
+  //     address: addressToBeUsed,
+  //     totalSum: double.parse(widget.totalAmount),
+  //   );
+  // }
 
-  void payPressed(String addressFromProvider) {
-    addressToBeUsed = "";
+  // void payPressed(String addressFromProvider) {
+  //   addressToBeUsed = "";
 
-    bool isForm = flatBuildingController.text.isNotEmpty ||
-        areaController.text.isNotEmpty ||
-        pincodeController.text.isNotEmpty ||
-        cityController.text.isNotEmpty;
+  //   bool isForm = flatBuildingController.text.isNotEmpty ||
+  //       areaController.text.isNotEmpty ||
+  //       pincodeController.text.isNotEmpty ||
+  //       cityController.text.isNotEmpty;
 
-    if (isForm) {
-      if (_addressFormKey.currentState!.validate()) {
-        addressToBeUsed =
-            '${flatBuildingController.text}, ${areaController.text}, ${cityController.text} - ${pincodeController.text}';
-      } else {
-        throw Exception('Please enter all the values!');
-      }
-    } else if (addressFromProvider.isNotEmpty) {
-      addressToBeUsed = addressFromProvider;
-    } else {
-      showSnackBar(context, 'ERROR');
-    }
+  //   if (isForm) {
+  //     if (_addressFormKey.currentState!.validate()) {
+  //       addressToBeUsed =
+  //           '${flatBuildingController.text}, ${areaController.text}, ${cityController.text} - ${pincodeController.text}';
+  //     } else {
+  //       throw Exception('Please enter all the values!');
+  //     }
+  //   } else if (addressFromProvider.isNotEmpty) {
+  //     addressToBeUsed = addressFromProvider;
+  //   } else {
+  //     showSnackBar(context, 'ERROR');
+  //   }
+  // }
+  getAmt() {
+    return int.parse(widget.totalAmount) * 100; // Converting to paisa
   }
 
   @override
@@ -177,38 +185,126 @@ class _AddressScreenState extends State<AddressScreen> {
                       hintText: 'Town/City',
                     ),
                     const SizedBox(height: 10),
+                    const SizedBox(height: 10),
+                    CustomTextField(
+                      controller: phoneController,
+                      hintText: 'Phone Number',
+                    ),
+                    const SizedBox(height: 10),
+                    CustomButton(
+                      onTap: () => payWithKhaltiInApp(address),
+                      text: "Pay with Khalti",
+                    ),
+                    Text(referenceId)
                   ],
                 ),
               ),
-              ApplePayButton(
-                width: double.infinity,
-                style: ApplePayButtonStyle.whiteOutline,
-                type: ApplePayButtonType.buy,
-                paymentConfigurationAsset: 'applepay.json',
-                onPaymentResult: onApplePayResult,
-                paymentItems: paymentItems,
-                margin: const EdgeInsets.only(top: 15),
-                height: 50,
-                onPressed: () => payPressed(address),
-              ),
-              const SizedBox(height: 10),
-              GooglePayButton(
-                onPressed: () => payPressed(address),
-                paymentConfigurationAsset: 'gpay.json',
-                onPaymentResult: onGooglePayResult,
-                paymentItems: paymentItems,
-                height: 50,
-                style: GooglePayButtonStyle.black,
-                type: GooglePayButtonType.buy,
-                margin: const EdgeInsets.only(top: 15),
-                loadingIndicator: const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
+              // ApplePayButton(
+              //   width: double.infinity,
+              //   style: ApplePayButtonStyle.whiteOutline,
+              //   type: ApplePayButtonType.buy,
+              //   paymentConfigurationAsset: 'applepay.json',
+              //   onPaymentResult: onApplePayResult,
+              //   paymentItems: paymentItems,
+              //   margin: const EdgeInsets.only(top: 15),
+              //   height: 50,
+              //   onPressed: () => payPressed(address),
+              // ),
+              // const SizedBox(height: 10),
+              // GooglePayButton(
+              //   onPressed: () => payPressed(address),
+              //   paymentConfigurationAsset: 'gpay.json',
+              //   onPaymentResult: onGooglePayResult,
+              //   paymentItems: paymentItems,
+              //   height: 50,
+              //   style: GooglePayButtonStyle.black,
+              //   type: GooglePayButtonType.buy,
+              //   margin: const EdgeInsets.only(top: 15),
+              //   loadingIndicator: const Center(
+              //     child: CircularProgressIndicator(),
+              //   ),
+              // ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void payWithKhaltiInApp(String addressFromProvider) {
+    addressToBeUsed = "";
+
+    // onKhaltiPayResult;
+    // paymentItems;
+    bool isForm = flatBuildingController.text.isNotEmpty ||
+        areaController.text.isNotEmpty ||
+        pincodeController.text.isNotEmpty ||
+        cityController.text.isNotEmpty ||
+        phoneController.text.isNotEmpty;
+
+    if (isForm) {
+      if (_addressFormKey.currentState!.validate()) {
+        addressToBeUsed =
+            '${flatBuildingController.text}, ${areaController.text}, ${cityController.text} - ${pincodeController.text}- ${phoneController.text}';
+      } else {
+        throw Exception('Please enter all the values!');
+      }
+    } else if (addressFromProvider.isNotEmpty) {
+      addressToBeUsed = addressFromProvider;
+    } else {
+      showSnackBar(context, 'ERROR');
+    }
+    KhaltiScope.of(context).pay(
+      config: PaymentConfig(
+          amount: getAmt(),
+          productIdentity: "Product id",
+          productName: "productName"),
+      preferences: [
+        PaymentPreference.khalti,
+      ],
+      onSuccess: onSuccess,
+      onFailure: onFailure,
+    );
+  }
+
+  void onSuccess(PaymentSuccessModel success) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Payment Successful"),
+            actions: [
+              SimpleDialogOption(
+                child: const Text('OK'),
+                onPressed: () {
+                  setState(() {
+                    if (Provider.of<UserProvider>(context, listen: false)
+                        .user
+                        .address
+                        .isEmpty) {
+                      addressServices.saveUserAddress(
+                          context: context, address: addressToBeUsed);
+                    }
+                    addressServices.placeOrder(
+                      context: context,
+                      address: addressToBeUsed,
+                      totalSum: double.parse(widget.totalAmount),
+                    );
+                    referenceId = success.idx;
+                  });
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  void onFailure(PaymentFailureModel failure) {
+    debugPrint(failure.toString());
+  }
+
+  void onCancel() {
+    debugPrint("Cancelled");
   }
 }

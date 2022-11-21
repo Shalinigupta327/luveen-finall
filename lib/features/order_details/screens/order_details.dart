@@ -105,7 +105,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                             width: 1,
                           ),
                         ),
-                        hintText: 'Search Amazon.in',
+                        hintText: 'Search in Luveen',
                         hintStyle: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 17,
@@ -114,12 +114,6 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                     ),
                   ),
                 ),
-              ),
-              Container(
-                color: Colors.transparent,
-                height: 42,
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: const Icon(Icons.mic, color: Colors.black, size: 25),
               ),
             ],
           ),
@@ -132,9 +126,9 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'View order details',
+                'Order details',
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -154,7 +148,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
                           widget.order.orderedAt),
                     )}'),
                     Text('Order ID:          ${widget.order.id}'),
-                    Text('Order Total:      \$${widget.order.totalPrice}'),
+                    Text('Order Total:      \Rs ${widget.order.totalPrice}'),
                   ],
                 ),
               ),
@@ -162,7 +156,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
               const Text(
                 'Purchase Details',
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -212,7 +206,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
               const Text(
                 'Tracking',
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),

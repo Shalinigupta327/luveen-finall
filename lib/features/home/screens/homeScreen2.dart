@@ -106,12 +106,12 @@ class _Dashboard0State extends State<Dashboard0> {
                     ),
                   ),
                 ),
-                Container(
-                  color: Colors.transparent,
-                  height: 42,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: const Icon(Icons.mic, color: Colors.black, size: 25),
-                ),
+                // Container(
+                //   color: Colors.transparent,
+                //   height: 42,
+                //   margin: const EdgeInsets.symmetric(horizontal: 10),
+                //   child: const Icon(Icons.mic, color: Colors.black, size: 25),
+                // ),
               ],
             ),
           ),
@@ -119,21 +119,20 @@ class _Dashboard0State extends State<Dashboard0> {
           // Other Sliver Widgets
           SliverList(
             delegate: SliverChildListDelegate([
-              CarouselImage(),
-
               new Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: new Text(
                   'Categories',
                   style: new TextStyle(
                       fontSize: 16.0,
-                      color: Colors.black,
+                      color: Colors.black54,
                       fontWeight: FontWeight.bold),
                 ),
               ),
 
               //Horizontal list view begins here
               TopCategories(),
+              CarouselImage(),
 
               new Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -141,7 +140,7 @@ class _Dashboard0State extends State<Dashboard0> {
                   'Recent Products',
                   style: new TextStyle(
                       fontSize: 16.0,
-                      color: Colors.black,
+                      color: Colors.black54,
                       fontWeight: FontWeight.bold),
                 ),
               ),

@@ -69,68 +69,81 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                   child: Text(
                     'Keep shopping for ${widget.category}',
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 16,
+                      fontStyle: FontStyle.italic,
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 170,
+                Container(
+                  color: Colors.grey.shade100,
+                  height: 580,
                   child: GridView.builder(
-                    scrollDirection: Axis.horizontal,
                     padding: const EdgeInsets.only(left: 15),
                     itemCount: productList!.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      childAspectRatio: 1.4,
-                      mainAxisSpacing: 10,
+                      crossAxisCount: 2,
+                      // childAspectRatio: 1.4,
+                      // mainAxisSpacing: 10,
                     ),
                     itemBuilder: (context, index) {
                       final product = productList![index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            ProductDetails.routeName,
-                            // ProductDetailScreen.routeName,
-                            arguments: product,
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 130,
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.black12,
-                                    width: 0.5,
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Image.network(
-                                    product.images[0],
-                                  ),
-                                ),
+                      return Card(
+                        child: Hero(
+                            // tag: prod_name,
+                            tag: product.name,
+                            child: Material(
+                              child: InkWell(
+                                //   onTap: () => Navigator.of(context).push(
+                                //   new MaterialPageRoute(
+                                //     //here we are passing the values of the products to the product details page
+                                //     builder: (context) => new ProductDetails(
+                                //       product_detail_name: prod_name,
+                                //       product_detail_new_price: prod_price,
+
+                                //       product_detail_pictures: prod_picture,
+                                //     ),
+                                //   ),
+                                // ),
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    // ProductDetailScreen.routeName,
+                                    ProductDetails.routeName,
+                                    arguments: product,
+                                  );
+                                },
+                                child: GridTile(
+                                    footer: Container(
+                                      color: Colors.white,
+                                      child: ListTile(
+                                        leading: Text(
+                                          product.name,
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        title: Text(
+                                          // "\Rs.$prod_price",
+                                          "\Rs.${product.price}",
+
+                                          style: TextStyle(
+                                              color: Colors.green,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Image.network(
+                                      product.images[0],
+                                      fit: BoxFit.cover,
+                                    )),
                               ),
-                            ),
-                            Container(
-                              alignment: Alignment.topLeft,
-                              padding: const EdgeInsets.only(
-                                left: 0,
-                                top: 5,
-                                right: 15,
-                              ),
-                              child: Text(
-                                product.name,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
+                            )),
                       );
+                      /////yeha samma
                     },
                   ),
                 ),

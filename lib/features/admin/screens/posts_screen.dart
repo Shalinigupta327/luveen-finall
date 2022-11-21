@@ -47,39 +47,96 @@ class _PostsScreenState extends State<PostsScreen> {
     return products == null
         ? const Loader()
         : Scaffold(
+            backgroundColor: Colors.grey.shade100,
             body: GridView.builder(
               itemCount: products!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2),
               itemBuilder: (context, index) {
                 final productData = products![index];
-                return Column(
-                  children: [
-                    SizedBox(
-                      height: 140,
-                      child: SingleProduct(
-                        image: productData.images[0],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            productData.name,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          ),
+                return
+                    // Column(
+                    //   children: [
+                    //     SizedBox(
+                    //       height: 140,
+                    //       child: SingleProduct(
+                    //         image: productData.images[0],
+                    //       ),
+                    //     ),
+                    //     Row(
+                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //       children: [
+                    //         Expanded(
+                    //           child: Text(
+                    //             productData.name,
+                    //             overflow: TextOverflow.ellipsis,
+                    //             maxLines: 2,
+                    //           ),
+                    //         ),
+                    //         IconButton(
+                    //           onPressed: () => deleteProduct(productData, index),
+                    //           icon: const Icon(
+                    //             Icons.delete_outline,
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // );
+                    Card(
+                  child: Hero(
+                      // tag: prod_name,
+                      tag: productData.name,
+                      child: Material(
+                        child: InkWell(
+                          //   onTap: () => Navigator.of(context).push(
+                          //   new MaterialPageRoute(
+                          //     //here we are passing the values of the products to the product details page
+                          //     builder: (context) => new ProductDetails(
+                          //       product_detail_name: prod_name,
+                          //       product_detail_new_price: prod_price,
+
+                          //       product_detail_pictures: prod_picture,
+                          //     ),
+                          //   ),
+                          // ),
+                          // onTap: () {
+                          //   Navigator.pushNamed(
+                          //     context,
+                          //     // ProductDetailScreen.routeName,
+                          //     ProductDetails.routeName,
+                          //     arguments: product,
+                          //   );
+                          // },
+                          child: GridTile(
+                              footer: Container(
+                                color: Colors.white,
+                                child: ListTile(
+                                  leading: Text(
+                                    productData.name,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  title: Text(
+                                    // "\Rs.$prod_price",
+                                    "\Rs.${productData.price}",
+
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ),
+                              child: Image.network(
+                                productData.images[0],
+                                fit: BoxFit.cover,
+                              )),
                         ),
-                        IconButton(
-                          onPressed: () => deleteProduct(productData, index),
-                          icon: const Icon(
-                            Icons.delete_outline,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                      )),
                 );
               },
             ),

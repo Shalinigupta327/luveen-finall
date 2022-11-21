@@ -42,21 +42,10 @@ class _OrdersState extends State<Orders> {
                       left: 15,
                     ),
                     child: const Text(
-                      'Your Orders',
+                      'My Orders',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                      right: 15,
-                    ),
-                    child: Text(
-                      'See all',
-                      style: TextStyle(
-                        color: GlobalVariables.selectedNavBarColor,
                       ),
                     ),
                   ),
@@ -64,26 +53,161 @@ class _OrdersState extends State<Orders> {
               ),
               // display orders
               Container(
-                height: 170,
+                height: 1000,
+                color: Colors.grey.shade100,
                 padding: const EdgeInsets.only(
-                  left: 10,
-                  top: 20,
-                  right: 0,
+                  left: 5,
+                  top: 5,
+                  right: 5,
                 ),
                 child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
                   itemCount: orders!.length,
                   itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          OrderDetailScreen.routeName,
-                          arguments: orders![index],
-                        );
-                      },
-                      child: SingleProduct(
-                        image: orders![index].products[0].images[0],
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 5.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            OrderDetailScreen.routeName,
+                            arguments: orders![index],
+                          );
+                        },
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.15,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            // borderRadius:
+                            //     const BorderRadius.all(Radius.circular(10)),
+                            // border: Border.all(
+                            //     width: 1.0,
+                            //     color: Colors.grey,
+                            //     style: BorderStyle.solid),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Row(
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: <Widget>[
+                                        // Row(
+                                        //   children: <Widget>[
+                                        Text(
+                                          "Order ID: ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black54,
+                                              fontStyle: FontStyle.italic,
+                                              fontSize: 10),
+                                        ),
+
+                                        Text(
+                                          " ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black54,
+                                              fontStyle: FontStyle.italic,
+                                              fontSize: 10),
+                                        )
+                                        // ],
+                                        // ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        // Row(
+                                        //   children: <Widget>[
+                                        Text(
+                                          "Ordered Date: ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black54,
+                                              fontStyle: FontStyle.italic,
+                                              fontSize: 10),
+                                        ),
+
+                                        Text(
+                                          "Shalini Gupta",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black54,
+                                              fontStyle: FontStyle.italic,
+                                              fontSize: 10),
+                                        )
+                                        // ],
+                                        // ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        // Row(
+                                        //   children: <Widget>[
+                                        Text(
+                                          "Total items: ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black54,
+                                              fontStyle: FontStyle.italic,
+                                              fontSize: 10),
+                                        ),
+
+                                        Text(
+                                          "1",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black54,
+                                              fontStyle: FontStyle.italic,
+                                              fontSize: 10),
+                                        )
+                                        // ],
+                                        // ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        // Row(
+                                        //   children: <Widget>[
+                                        Text(
+                                          "Total: ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.green,
+                                              fontStyle: FontStyle.italic,
+                                              fontSize: 14),
+                                        ),
+
+                                        Text(
+                                          " Rs 80",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.green,
+                                              fontStyle: FontStyle.italic,
+                                              fontSize: 14),
+                                        )
+                                        // ],
+                                        // ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Spacer(),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.10,
+                                  width:
+                                      MediaQuery.of(context).size.height * 0.12,
+                                  child: SingleProduct(
+                                    image: orders![index].products[0].images[0],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   },

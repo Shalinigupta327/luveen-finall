@@ -2,6 +2,7 @@ import 'package:luveen/features/admin/screens/Prescription_reply.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:luveen/features/home/screens/prescriptionView.dart';
 
 import '../../../common/widgets/loader.dart';
 import '../../../models/Pres.dart';
@@ -42,78 +43,92 @@ class _AdminPrescriptionState extends State<AdminPrescription> {
               itemBuilder: (context, index) {
                 final prescriptionData = prescriptions![index];
                 return Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    color: Colors.white10,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.12,
-                          width: MediaQuery.of(context).size.height * 0.12,
-                          child: SinglePrescription(
-                            image: prescriptionData.presimages[0],
-                          ),
+                    padding: const EdgeInsets.fromLTRB(8.0, 5.0, 8.0, 0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PrescriptionView()),
+                        );
+                      },
+                      child: new Container(
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.height * 0.76,
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    prescriptionData.name,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    prescriptionData.name,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                  ),
-                                ),
-                              ],
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.12,
+                              width: MediaQuery.of(context).size.height * 0.12,
+                              child: SinglePrescription(
+                                image: prescriptionData.presimages[0],
+                              ),
                             ),
-                          ),
-                        ),
-                        Expanded(
-                            child: Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 12.0),
-                          child: VerticalDivider(
-                            color: Colors.green,
-                            width: 2,
-                          ),
-                        )),
-                        Expanded(
-                            child: TextButton(
+                            Container(
+                              // width: MediaQuery.of(context).size.height * 0.65,
+                              // child: Padding(
+                              //   padding: const EdgeInsets.all(20.0),
+                              child: Expanded(
                                 child: Text(
-                                  "Reply",
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.green),
+                                  prescriptionData.name,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
                                 ),
-                                onPressed: () async {
-                                  x = await Get.to(const PrescriptionReply());
-                                  setState(() {});
-                                }
-                                // async {
-                                //   const String _url = "https://www.geeksforgeeks.org";
-                                //   if (await canLaunch(_url)) {
-                                //     launch(_url);
-                                //   } else {
-                                //     throw "Could not launch $_url";
-                                //   }
-                                // },
-                                ))
-                      ],
-                    ),
-                  ),
-                );
+                              ),
+
+                              // IconButton(
+                              //   onPressed: () => deletePrescription(
+                              //       prescriptionData, index),
+                              //   icon: const Icon(
+                              //     Icons.delete_outline,
+                              //   ),
+                              // ),
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.chat),
+                              onPressed: () {
+                                print("Welcome to the Chat Box");
+                              },
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(right: 20.0),
+                            //   child: Container(
+                            //     color: Colors.grey.shade300,
+                            //     child: IconButton(
+                            //       onPressed: () => deletePrescription(
+                            //           prescriptionData, index),
+                            //       icon: const Icon(
+                            //         Icons.delete_outline,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+
+                            // TextButton(
+                            //     child: Text(
+                            //       " View Reply",
+                            //       style: TextStyle(
+                            //           fontSize: 15, color: Colors.green),
+                            //     ),
+                            //     onPressed: () {}
+                            //     // async {
+                            //     //   const String _url = "https://www.geeksforgeeks.org";
+                            //     //   if (await canLaunch(_url)) {
+                            //     //     launch(_url);
+                            //     //   } else {
+                            //     //     throw "Could not launch $_url";
+                            //     //   }
+                            //     // },
+                            //     )
+                          ],
+                        ),
+                      ),
+                    ));
               },
             ),
           );

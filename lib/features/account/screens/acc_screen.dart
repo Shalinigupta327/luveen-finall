@@ -32,20 +32,20 @@ class AccountScreen extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     )),
-                Container(
-                  padding: const EdgeInsets.only(left: 15, right: 15),
-                  child: Row(
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(right: 15),
-                        child: Icon(Icons.notifications_outlined),
-                      ),
-                      Icon(
-                        Icons.search,
-                      ),
-                    ],
-                  ),
-                )
+                // Container(
+                //   padding: const EdgeInsets.only(left: 15, right: 15),
+                //   child: Row(
+                //     children: const [
+                //       Padding(
+                //         padding: EdgeInsets.only(right: 15),
+                //         child: Icon(Icons.notifications_outlined),
+                //       ),
+                //       Icon(
+                //         Icons.search,
+                //       ),
+                //     ],
+                //   ),
+                // )
               ],
             ),
           ),
@@ -54,7 +54,7 @@ class AccountScreen extends StatelessWidget {
               BelowAppBar(),
               SizedBox(height: 10),
               TopButtons(),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Orders(),
               //  Productie()
             ]),

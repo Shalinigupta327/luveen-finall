@@ -40,24 +40,29 @@ class _ProductieState extends State<Productie> {
     return products == null
         ? const Loader()
         : Scaffold(
-            //  body: Text ('lalala')
-            body: GridView.builder(
-                itemCount: products!.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (BuildContext context, int index) {
-                  final productData = products![index];
-                  // return SingleP(
-                  //   prod_name: productData.name,
-                  //   prod_picture: productData.images[0],
-                  //   // prod_picture: productData.images,
-                  //   prod_price: productData.price,
-                  // );
+            backgroundColor: Colors.grey.shade100,
 
-                  return SingleP(
-                    product: productData,
-                  );
-                }));
+            //  body: Text ('lalala')
+            body: Padding(
+              padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+              child: GridView.builder(
+                  itemCount: products!.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (BuildContext context, int index) {
+                    final productData = products![index];
+                    // return SingleP(
+                    //   prod_name: productData.name,
+                    //   prod_picture: productData.images[0],
+                    //   // prod_picture: productData.images,
+                    //   prod_price: productData.price,
+                    // );
+
+                    return SingleP(
+                      product: productData,
+                    );
+                  }),
+            ));
   }
 }
 

@@ -16,7 +16,7 @@ class AccountButton extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 10),
         height: 40,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.white, width: 0.0),
+          border: Border.all(color: Colors.lightGreenAccent, width: 0.5),
           borderRadius: BorderRadius.circular(50),
           color: Colors.white,
         ),

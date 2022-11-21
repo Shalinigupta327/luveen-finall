@@ -13,43 +13,50 @@ class TopCategories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 60,
-      child: ListView.builder(
-        itemCount: GlobalVariables.categoryImages.length,
-        scrollDirection: Axis.horizontal,
-        itemExtent: 75,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => navigateToCategoryPage(
-              context,
-              GlobalVariables.categoryImages[index]['title']!,
-            ),
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.asset(
-                      GlobalVariables.categoryImages[index]['image']!,
-                      fit: BoxFit.cover,
-                      height: 40,
-                      width: 40,
-                    ),
+        height: 70,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: Colors.grey.shade50,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 0.0),
+            child: ListView.builder(
+              itemCount: GlobalVariables.categoryImages.length,
+              scrollDirection: Axis.horizontal,
+              itemExtent: 75,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () => navigateToCategoryPage(
+                    context,
+                    GlobalVariables.categoryImages[index]['title']!,
                   ),
-                ),
-                Text(
-                  GlobalVariables.categoryImages[index]['title']!,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(
+                            GlobalVariables.categoryImages[index]['image']!,
+                            fit: BoxFit.cover,
+                            height: 40,
+                            width: 40,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        GlobalVariables.categoryImages[index]['title']!,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                );
+              },
             ),
-          );
-        },
-      ),
-    );
+          ),
+        ));
   }
 }

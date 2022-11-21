@@ -17,7 +17,7 @@ class _EditProfileState extends State<EditProfile> {
         child: AppBar(
           backgroundColor: Colors.green,
           title: new Padding(
-            padding: const EdgeInsets.only(right: 150.0),
+            padding: const EdgeInsets.all(2.0),
             child: new Text(
               "Edit Profile",
               style: TextStyle(
@@ -30,30 +30,16 @@ class _EditProfileState extends State<EditProfile> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(25.0, 35.0, 25.0, 25.0),
-        child: Column(children: [
-          Container(
-              alignment: Alignment.center,
-              width: 200.0,
-              height: 200.0,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/KU logo.png'),
-                    fit: BoxFit.fill,
-                  ),
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(60.0))),
+        padding: const EdgeInsets.all(8.0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           const SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.all(0.0),
-            child: SizedBox(
-              width: 350,
-              height: 45,
-              child: TextField(
-                obscureText: false,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Username'),
-              ),
+          SizedBox(
+            width: 350,
+            height: 45,
+            child: TextField(
+              obscureText: false,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'Username'),
             ),
           ),
           const SizedBox(height: 15),

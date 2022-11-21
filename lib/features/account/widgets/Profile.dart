@@ -56,25 +56,25 @@ class _profileState extends State<profile> {
                       ))
                 ],
               ),
-              Center(
-                child: Container(
-                    alignment: Alignment.center,
-                    width: 150.0,
-                    height: 150.0,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/KU logo.png'),
-                          fit: BoxFit.fill,
-                        ),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(60.0))),
-              ),
+              // Center(
+              //   child: Container(
+              //       alignment: Alignment.center,
+              //       width: 150.0,
+              //       height: 150.0,
+              //       decoration: BoxDecoration(
+              //           image: DecorationImage(
+              //             image: AssetImage('assets/KU logo.png'),
+              //             fit: BoxFit.fill,
+              //           ),
+              //           color: Colors.white,
+              //           borderRadius: BorderRadius.circular(60.0))),
+              // ),
               SizedBox(
                 height: 30,
               ),
               Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 215, 247, 217),
+                      color: Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(15.0)),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(20, 15, 10, 10),
@@ -83,7 +83,7 @@ class _profileState extends State<profile> {
                         // Row(
                         //   children: <Widget>[
                         Text(
-                          "Username:  ",
+                          "Username:",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               color: Colors.black,
@@ -107,7 +107,7 @@ class _profileState extends State<profile> {
               ),
               Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 215, 247, 217),
+                      color: Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(15.0)),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(20, 15, 10, 10),
@@ -116,7 +116,7 @@ class _profileState extends State<profile> {
                         // Row(
                         //   children: <Widget>[
                         Text(
-                          "Email:  ",
+                          "Email:",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               color: Colors.black,
@@ -140,7 +140,7 @@ class _profileState extends State<profile> {
               ),
               Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 215, 247, 217),
+                      color: Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(15.0)),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(20, 15, 10, 10),
@@ -149,7 +149,7 @@ class _profileState extends State<profile> {
                         // Row(
                         //   children: <Widget>[
                         Text(
-                          "Age  ",
+                          "Age:",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               color: Colors.black,
@@ -173,7 +173,7 @@ class _profileState extends State<profile> {
               ),
               Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 215, 247, 217),
+                      color: Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(15.0)),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(20, 15, 10, 10),
@@ -182,7 +182,7 @@ class _profileState extends State<profile> {
                         // Row(
                         //   children: <Widget>[
                         Text(
-                          "Address:  ",
+                          "Address:",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               color: Colors.black,
@@ -206,7 +206,7 @@ class _profileState extends State<profile> {
               ),
               Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 215, 247, 217),
+                      color: Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(15.0)),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(20, 15, 10, 10),
@@ -215,7 +215,7 @@ class _profileState extends State<profile> {
                         // Row(
                         //   children: <Widget>[
                         Text(
-                          "Contact No.:  ",
+                          "Contact No:",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               color: Colors.black,
@@ -239,7 +239,7 @@ class _profileState extends State<profile> {
               ),
               Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 215, 247, 217),
+                      color: Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(15.0)),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(20, 15, 10, 10),
@@ -248,7 +248,7 @@ class _profileState extends State<profile> {
                         // Row(
                         //   children: <Widget>[
                         Text(
-                          "Gender:  ",
+                          "Gender:",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               color: Colors.black,

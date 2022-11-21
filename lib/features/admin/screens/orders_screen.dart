@@ -31,28 +31,164 @@ class _OrdersScreenState extends State<OrdersScreen> {
   Widget build(BuildContext context) {
     return orders == null
         ? const Loader()
-        : GridView.builder(
-            itemCount: orders!.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            itemBuilder: (context, index) {
-              final orderData = orders![index];
-              return GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    OrderDetailScreen.routeName,
-                    arguments: orderData,
-                  );
-                },
-                child: SizedBox(
-                  height: 140,
-                  child: SingleProduct(
-                    image: orderData.products[0].images[0],
+        : Container(
+            color: Colors.grey.shade100,
+            padding: const EdgeInsets.only(
+              left: 5,
+              top: 5,
+              right: 5,
+            ),
+            child: ListView.builder(
+              itemCount: orders!.length,
+              itemBuilder: (context, index) {
+                final orderData = orders![index];
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 5.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        OrderDetailScreen.routeName,
+                        arguments: orderData,
+                      );
+                    },
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        // borderRadius:
+                        //     const BorderRadius.all(Radius.circular(10)),
+                        // border: Border.all(
+                        //     width: 1.0,
+                        //     color: Colors.grey,
+                        //     style: BorderStyle.solid),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: <Widget>[
+                                    // Row(
+                                    //   children: <Widget>[
+                                    Text(
+                                      "Order ID: ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black54,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10),
+                                    ),
+
+                                    Text(
+                                      " ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black54,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10),
+                                    )
+                                    // ],
+                                    // ),
+                                  ],
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    // Row(
+                                    //   children: <Widget>[
+                                    Text(
+                                      "Ordered Date: ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black54,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10),
+                                    ),
+
+                                    Text(
+                                      "Shalini Gupta",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black54,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10),
+                                    )
+                                    // ],
+                                    // ),
+                                  ],
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    // Row(
+                                    //   children: <Widget>[
+                                    Text(
+                                      "Total items: ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black54,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10),
+                                    ),
+
+                                    Text(
+                                      "1",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black54,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 10),
+                                    )
+                                    // ],
+                                    // ),
+                                  ],
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    // Row(
+                                    //   children: <Widget>[
+                                    Text(
+                                      "Total: ",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.green,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14),
+                                    ),
+
+                                    Text(
+                                      " Rs 80",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.green,
+                                          fontStyle: FontStyle.italic,
+                                          fontSize: 14),
+                                    )
+                                    // ],
+                                    // ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Spacer(),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.10,
+                              width: MediaQuery.of(context).size.height * 0.12,
+                              child: SingleProduct(
+                                image: orderData.products[0].images[0],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           );
   }
 }

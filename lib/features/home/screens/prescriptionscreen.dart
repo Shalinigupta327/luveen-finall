@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:luveen/features/home/screens/prescriptionView.dart';
 import 'package:luveen/features/home/widgets/single_prescription.dart';
 import 'package:luveen/features/home/widgets/pickImage.dart';
 import 'package:luveen/models/Pres.dart';
@@ -170,100 +171,98 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
     return prescriptions == null
         ? const Loader()
         : Scaffold(
+            backgroundColor: Colors.grey.shade100,
             body: ListView.builder(
               itemCount: prescriptions!.length,
               itemBuilder: (context, index) {
                 final prescriptionData = prescriptions![index];
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(8.0, 5.0, 8.0, 0),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      border: Border.all(
-                          width: 1.0,
-                          color: Colors.grey,
-                          style: BorderStyle.solid),
-                    ),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.12,
-                          width: MediaQuery.of(context).size.height * 0.12,
-                          child: SinglePrescription(
-                            image: prescriptionData.presimages[0],
-                          ),
+                    padding: const EdgeInsets.fromLTRB(8.0, 5.0, 8.0, 0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PrescriptionView()),
+                        );
+                      },
+                      child: new Container(
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.height * 0.65,
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    prescriptionData.name,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    prescriptionData.name,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                  ),
-                                ),
-                                // IconButton(
-                                //   onPressed: () => deletePrescription(
-                                //       prescriptionData, index),
-                                //   icon: const Icon(
-                                //     Icons.delete_outline,
-                                //   ),
-                                // ),
-                              ],
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.12,
+                              width: MediaQuery.of(context).size.height * 0.12,
+                              child: SinglePrescription(
+                                image: prescriptionData.presimages[0],
+                              ),
                             ),
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () =>
-                              deletePrescription(prescriptionData, index),
-                          icon: const Icon(
-                            Icons.delete_outline,
-                          ),
-                        ),
-                        Expanded(
-                            child: Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 12.0),
-                          child: VerticalDivider(
-                            color: Colors.green,
-                            width: 2,
-                          ),
-                        )),
-                        Expanded(
-                            child: TextButton(
+                            Container(
+                              // width: MediaQuery.of(context).size.height * 0.65,
+                              // child: Padding(
+                              //   padding: const EdgeInsets.all(20.0),
+                              child: Expanded(
                                 child: Text(
-                                  " View Reply",
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.green),
+                                  prescriptionData.name,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
                                 ),
-                                onPressed: () {}
-                                // async {
-                                //   const String _url = "https://www.geeksforgeeks.org";
-                                //   if (await canLaunch(_url)) {
-                                //     launch(_url);
-                                //   } else {
-                                //     throw "Could not launch $_url";
-                                //   }
-                                // },
-                                ))
-                      ],
-                    ),
-                  ),
-                );
+                              ),
+
+                              // IconButton(
+                              //   onPressed: () => deletePrescription(
+                              //       prescriptionData, index),
+                              //   icon: const Icon(
+                              //     Icons.delete_outline,
+                              //   ),
+                              // ),
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.chat),
+                              onPressed: () {
+                                print("Welcome to the Chat Box");
+                              },
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20.0),
+                              child: Container(
+                                color: Colors.grey.shade300,
+                                child: IconButton(
+                                  onPressed: () => deletePrescription(
+                                      prescriptionData, index),
+                                  icon: const Icon(
+                                    Icons.delete_outline,
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            // TextButton(
+                            //     child: Text(
+                            //       " View Reply",
+                            //       style: TextStyle(
+                            //           fontSize: 15, color: Colors.green),
+                            //     ),
+                            //     onPressed: () {}
+                            //     // async {
+                            //     //   const String _url = "https://www.geeksforgeeks.org";
+                            //     //   if (await canLaunch(_url)) {
+                            //     //     launch(_url);
+                            //     //   } else {
+                            //     //     throw "Could not launch $_url";
+                            //     //   }
+                            //     // },
+                            //     )
+                          ],
+                        ),
+                      ),
+                    ));
               },
             ),
             floatingActionButton: FloatingActionButton(

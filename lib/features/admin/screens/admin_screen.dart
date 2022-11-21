@@ -3,7 +3,7 @@ import 'package:luveen/features/account/services/account_services.dart';
 import 'package:luveen/features/admin/screens/analtyics_screen.dart';
 import 'package:luveen/features/admin/screens/orders_screen.dart';
 import 'package:luveen/features/admin/screens/posts_screen.dart';
-import 'package:luveen/features/home/screens/PrescriptionScreen2.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../account/widgets/admin_prescription.dart';
