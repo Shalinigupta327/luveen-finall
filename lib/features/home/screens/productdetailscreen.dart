@@ -195,27 +195,36 @@ class _ProductDetailsState extends State<ProductDetails> {
               // MyFavCheckBox(),
             ],
           ),
-          Divider(),
-          new Row(
+          SizedBox(height: 5),
+            Row(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: new Text(
-                  "Product Brand:",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Expanded(
+                //   child: MaterialButton(
+                //     onPressed: (addToCart) {},
+                //     color: Colors.green,
+                //     textColor: Colors.white,
+                //     elevation: 0.2,
+                //     child: new Text("Buy now"),
+                //   ),
+                // ),
+
+                child: CustomButton2(
+                  text: 'Buy Now',
+                  // onTap: addToCart,
+                  onTap: () {
+                    
+                  },
+                  // color: const Color.fromRGBO(254, 216, 19, 1),
+                  color: Colors.yellow,
                 ),
+                // CartCheck(
               ),
-              Padding(
-                padding: EdgeInsets.all(5.0),
-                child: new Text("Brand X"),
-              ),
+              // MyFavCheckBox(),
             ],
           ),
           Divider(),
+        
+          
           new ListTile(
             title: new Text(
               "Description",

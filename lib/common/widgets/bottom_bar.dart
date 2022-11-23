@@ -4,7 +4,7 @@ import 'package:luveen/features/account/screens/account_screen.dart';
 import 'package:luveen/features/cart/screens/cart_screen.dart';
 import 'package:luveen/features/home/screens/homeScreen2.dart';
 import 'package:luveen/features/home/screens/home_screen.dart';
-// import 'package:amazon_clone_tutorial/features/prescription/screens/prescriptionScreen.dart';
+// import 'package:luveen/features/prescription/screens/prescriptionScreen.dart';
 import 'package:luveen/providers/user_provider.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
@@ -110,7 +110,7 @@ class _BottomBarState extends State<BottomBar> {
               child: Badge(
                 elevation: 0,
                 badgeContent: Text(userCartLen.toString()),
-                badgeColor: Colors.white,
+                badgeColor: Colors.yellow,
                 child: const Icon(
                   Icons.shopping_cart_outlined,
                 ),

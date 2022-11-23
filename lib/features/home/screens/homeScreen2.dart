@@ -7,6 +7,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../../../constants/global_variables.dart';
 import '../../search/screens/search_screen.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 class Dashboard0 extends StatefulWidget {
   static const String routeName = '/home2';
@@ -23,26 +25,27 @@ class _Dashboard0State extends State<Dashboard0> {
 
   @override
   Widget build(BuildContext context) {
-    // Widget image_carousel = new Container(
-    //   height: 180,
-    //   child: new CarouselImage(
-    //   boxFit: BoxFit.cover,
-    //   images: [
-    //     AssetImage('assets/sale1.png'),
-    //     AssetImage('assets/sale2.jpeg'),
-    //     AssetImage('assets/sale1.png'),
-    //     AssetImage('assets/sale2.jpeg'),
-    //     AssetImage('assets/sale1.png'),
-    //   ],
-    //   autoplay: true,
-    //   animationCurve: Curves.fastOutSlowIn,
-    //  animationDuration: Duration(milliseconds: 1000),
-    //   dotSize: 3.0,
-    //   dotColor: Colors.white,
-    //   indicatorBgPadding: 4.0,
-    // ),
-
-    // );
+    Widget image_carousel = new Container(
+      height: 150,
+      // ignore: unnecessary_new
+      child: Carousel(
+      boxFit: BoxFit.cover,
+      images: [
+        AssetImage('assets/images/banner.jpg'),
+        AssetImage('assets/images/banner.jpg'),
+        AssetImage('assets/images/banner.jpg'),
+        AssetImage('assets/images/banner.jpg'),
+        AssetImage('assets/images/banner.jpg'),
+      ],
+      autoplay: true,
+      animationCurve: Curves.fastOutSlowIn,
+     animationDuration: Duration(milliseconds: 1000),
+      dotSize: 3.0,
+      dotColor: Colors.white,
+      indicatorBgPadding: 4.0,
+    ),
+      
+    );
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -99,7 +102,7 @@ class _Dashboard0State extends State<Dashboard0> {
                           hintText: 'Search in Luveen',
                           hintStyle: const TextStyle(
                             fontWeight: FontWeight.w500,
-                            fontSize: 17,
+                            fontSize: 14,
                           ),
                         ),
                       ),
@@ -124,7 +127,7 @@ class _Dashboard0State extends State<Dashboard0> {
                 child: new Text(
                   'Categories',
                   style: new TextStyle(
-                      fontSize: 16.0,
+                      fontSize: 14.0,
                       color: Colors.black54,
                       fontWeight: FontWeight.bold),
                 ),
@@ -132,14 +135,15 @@ class _Dashboard0State extends State<Dashboard0> {
 
               //Horizontal list view begins here
               TopCategories(),
-              CarouselImage(),
+               image_carousel,
+              // CarouselImage(),
 
               new Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: new Text(
                   'Recent Products',
                   style: new TextStyle(
-                      fontSize: 16.0,
+                      fontSize: 14.0,
                       color: Colors.black54,
                       fontWeight: FontWeight.bold),
                 ),

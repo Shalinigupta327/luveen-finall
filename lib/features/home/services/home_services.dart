@@ -1,11 +1,11 @@
 // import 'dart:convert';
 
-// import 'package:amazon_clone_tutorial/constants/error_handling.dart';
-// import 'package:amazon_clone_tutorial/constants/global_variables.dart';
-// import 'package:amazon_clone_tutorial/constants/utils.dart';
-// import 'package:amazon_clone_tutorial/features/home/widgets/newproduct.dart';
-// import 'package:amazon_clone_tutorial/models/product.dart';
-// import 'package:amazon_clone_tutorial/providers/user_provider.dart';
+// import 'package:luveen/constants/error_handling.dart';
+// import 'package:luveen/constants/global_variables.dart';
+// import 'package:luveen/constants/utils.dart';
+// import 'package:luveen/features/home/widgets/newproduct.dart';
+// import 'package:luveen/models/product.dart';
+// import 'package:luveen/providers/user_provider.dart';
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 // import 'package:http/http.dart' as http;
@@ -121,6 +121,7 @@ import 'package:luveen/constants/error_handling.dart';
 import 'package:luveen/constants/global_variables.dart';
 import 'package:luveen/constants/utils.dart';
 import 'package:luveen/models/Pres.dart';
+import 'package:luveen/models/order.dart';
 import 'package:luveen/models/product.dart';
 
 import 'package:luveen/providers/user_provider.dart';
@@ -438,4 +439,39 @@ class HomeServices {
       showSnackBar(context, e.toString());
     }
   }
+
+ void deleteMyOrder({
+    required BuildContext context,
+    required Order order,
+    required VoidCallback onSuccess,
+  }) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+
+    try {
+      http.Response res = await http.post(
+        Uri.parse('$uri/api/delete-my-orders'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+        body: jsonEncode({
+          'id': order.id,
+        }),
+      );
+
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          onSuccess();
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+
+
+
 }

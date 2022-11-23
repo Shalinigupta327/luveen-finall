@@ -231,8 +231,7 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 20.0),
-                              child: Container(
-                                color: Colors.grey.shade300,
+                             
                                 child: IconButton(
                                   onPressed: () => deletePrescription(
                                       prescriptionData, index),
@@ -240,7 +239,7 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                                     Icons.delete_outline,
                                   ),
                                 ),
-                              ),
+                              
                             ),
                           ],
                         ),

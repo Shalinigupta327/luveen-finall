@@ -52,13 +52,14 @@ class _AdminScreenState extends State<AdminScreen> {
                     child: Text(
                       'Luveen',
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+                          color: Colors.white, fontWeight: FontWeight.bold,fontSize: 15),
                     )),
                 const Text(
                   'Admin',
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
+                    
                   ),
                 )
               ],

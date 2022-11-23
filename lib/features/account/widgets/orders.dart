@@ -2,6 +2,7 @@ import 'package:luveen/common/widgets/loader.dart';
 import 'package:luveen/constants/global_variables.dart';
 import 'package:luveen/features/account/services/account_services.dart';
 import 'package:luveen/features/account/widgets/single_product.dart';
+import 'package:luveen/features/home/services/home_services.dart';
 import 'package:luveen/features/order_details/screens/order_details.dart';
 import 'package:luveen/models/order.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class Orders extends StatefulWidget {
 class _OrdersState extends State<Orders> {
   List<Order>? orders;
   final AccountServices accountServices = AccountServices();
+  final HomeServices homeServices = HomeServices();
 
   @override
   void initState() {
@@ -28,6 +30,16 @@ class _OrdersState extends State<Orders> {
   void fetchOrders() async {
     orders = await accountServices.fetchMyOrders(context: context);
     setState(() {});
+  }
+void deleteMyOrder(Order order, int index) {
+    homeServices.deleteMyOrder(
+      context: context,
+      order: order,
+      onSuccess: () {
+        orders!.removeAt(index);
+        setState(() {});
+      },
+    );
   }
 
   @override
@@ -46,7 +58,7 @@ class _OrdersState extends State<Orders> {
                     child: const Text(
                       'My Orders',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -90,6 +102,17 @@ class _OrdersState extends State<Orders> {
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               children: [
+                                
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.10,
+                                  width:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  child: SingleProduct(
+                                    image: orders![index].products[0].images[0],
+                                  ),
+                                ),
+                                //  Spacer(),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +127,7 @@ class _OrdersState extends State<Orders> {
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black54,
                                               fontStyle: FontStyle.italic,
-                                              fontSize: 10),
+                                              fontSize: 8),
                                         ),
 
                                         Text(
@@ -114,7 +137,7 @@ class _OrdersState extends State<Orders> {
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black54,
                                               fontStyle: FontStyle.italic,
-                                              fontSize: 10),
+                                              fontSize: 8),
                                         )
                                         // ],
                                         // ),
@@ -130,7 +153,7 @@ class _OrdersState extends State<Orders> {
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black54,
                                               fontStyle: FontStyle.italic,
-                                              fontSize: 10),
+                                              fontSize: 8),
                                         ),
 
                                         Text(
@@ -144,7 +167,7 @@ class _OrdersState extends State<Orders> {
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black54,
                                               fontStyle: FontStyle.italic,
-                                              fontSize: 10),
+                                              fontSize: 8),
                                         )
                                         // ],
                                         // ),
@@ -160,7 +183,7 @@ class _OrdersState extends State<Orders> {
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black54,
                                               fontStyle: FontStyle.italic,
-                                              fontSize: 10),
+                                              fontSize: 8),
                                         ),
 
                                         Text(
@@ -171,7 +194,7 @@ class _OrdersState extends State<Orders> {
                                               fontWeight: FontWeight.w400,
                                               color: Colors.black54,
                                               fontStyle: FontStyle.italic,
-                                              fontSize: 10),
+                                              fontSize: 8),
                                         )
                                         // ],
                                         // ),
@@ -182,12 +205,12 @@ class _OrdersState extends State<Orders> {
                                         // Row(
                                         //   children: <Widget>[
                                         Text(
-                                          "Total: ",
+                                          "Total:Rs ",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               color: Colors.green,
                                               fontStyle: FontStyle.italic,
-                                              fontSize: 14),
+                                              fontSize: 10),
                                         ),
 
                                         Text(
@@ -196,7 +219,7 @@ class _OrdersState extends State<Orders> {
                                               fontWeight: FontWeight.w500,
                                               color: Colors.green,
                                               fontStyle: FontStyle.italic,
-                                              fontSize: 14),
+                                              fontSize: 10),
                                         )
                                         // ],
                                         // ),
@@ -204,16 +227,20 @@ class _OrdersState extends State<Orders> {
                                     ),
                                   ],
                                 ),
-                                Spacer(),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.10,
-                                  width:
-                                      MediaQuery.of(context).size.height * 0.12,
-                                  child: SingleProduct(
-                                    image: orders![index].products[0].images[0],
+                               Spacer(),
+                                Padding(
+                              padding: const EdgeInsets.only(right: 5.0),
+                              
+                                child: IconButton(
+                                  onPressed: () {},
+                                  // => deletePrescription(
+                                  //     prescriptionData, index),
+                                  icon: const Icon(
+                                    Icons.delete_outline,
                                   ),
                                 ),
+                              
+                            ),
                               ],
                             ),
                           ),

@@ -95,7 +95,7 @@ class _CartScreenState extends State<CartScreen> {
                         hintText: 'Search in Luveen',
                         hintStyle: const TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontSize: 17,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -119,7 +119,7 @@ class _CartScreenState extends State<CartScreen> {
             const CartSubtotal(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: CustomButton(
+              child: CustomButton2(
                 text: 'Proceed to Buy (${user.cart.length} items)',
                 onTap: () => navigateToAddress(sum),
                 color: Colors.yellow[600],

@@ -5,6 +5,8 @@ import 'package:luveen/features/admin/widgets/category_products_chart.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
+// import '../../account/services/account_services.dart';
+
 class AnalyticsScreen extends StatefulWidget {
   const AnalyticsScreen({Key? key}) : super(key: key);
 
@@ -37,7 +39,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
         : Column(
             children: [
               Text(
-                '\$$totalSales',
+                'Rs.$totalSales',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -48,6 +50,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 child: CategoryProductsChart(seriesList: [
                   charts.Series(
                     id: 'Sales',
+                    colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
                     data: earnings!,
                     domainFn: (Sales sales, _) => sales.label,
                     measureFn: (Sales sales, _) => sales.earning,
@@ -55,6 +58,8 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 ]),
               )
             ],
+            
           );
-  }
+      
+}
 }

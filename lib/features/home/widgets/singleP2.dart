@@ -59,8 +59,8 @@ class SingleP extends StatelessWidget {
                       leading: Text(
                         product.name,
                         style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                          fontWeight: FontWeight.normal,
                           color: Colors.black,
                         ),
                       ),
@@ -70,7 +70,7 @@ class SingleP extends StatelessWidget {
 
                         style: TextStyle(
                             color: Colors.green,
-                            fontSize: 16,
+                            fontSize: 11,
                             fontWeight: FontWeight.w500),
                       ),
                     ),

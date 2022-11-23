@@ -74,6 +74,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         padding: const EdgeInsets.all(12.0),
                         child: Row(
                           children: [
+                             
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.10,
+                              width: MediaQuery.of(context).size.height * 0.1,
+                              child: SingleProduct(
+                                image: orderData.products[0].images[0],
+                              ),
+                            ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +96,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                           fontWeight: FontWeight.w400,
                                           color: Colors.black54,
                                           fontStyle: FontStyle.italic,
-                                          fontSize: 10),
+                                          fontSize: 8),
                                     ),
 
                                     Text(
@@ -97,7 +105,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                           fontWeight: FontWeight.w400,
                                           color: Colors.black54,
                                           fontStyle: FontStyle.italic,
-                                          fontSize: 10),
+                                          fontSize: 8),
                                     )
                                     // ],
                                     // ),
@@ -113,7 +121,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                           fontWeight: FontWeight.w400,
                                           color: Colors.black54,
                                           fontStyle: FontStyle.italic,
-                                          fontSize: 10),
+                                          fontSize: 8),
                                     ),
 
                                     Text(
@@ -127,7 +135,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                           fontWeight: FontWeight.w400,
                                           color: Colors.black54,
                                           fontStyle: FontStyle.italic,
-                                          fontSize: 10),
+                                          fontSize: 8),
                                     )
                                     // ],
                                     // ),
@@ -143,7 +151,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                           fontWeight: FontWeight.w400,
                                           color: Colors.black54,
                                           fontStyle: FontStyle.italic,
-                                          fontSize: 10),
+                                          fontSize: 8),
                                     ),
 
                                     Text(
@@ -154,7 +162,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                           fontWeight: FontWeight.w400,
                                           color: Colors.black54,
                                           fontStyle: FontStyle.italic,
-                                          fontSize: 10),
+                                          fontSize: 8),
                                     )
                                     // ],
                                     // ),
@@ -170,7 +178,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                           fontWeight: FontWeight.w500,
                                           color: Colors.green,
                                           fontStyle: FontStyle.italic,
-                                          fontSize: 14),
+                                          fontSize: 10),
                                     ),
 
                                     Text(
@@ -180,7 +188,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                           fontWeight: FontWeight.w500,
                                           color: Colors.green,
                                           fontStyle: FontStyle.italic,
-                                          fontSize: 14),
+                                          fontSize: 10),
                                     )
                                     // ],
                                     // ),
@@ -188,13 +196,19 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                 ),
                               ],
                             ),
-                            Spacer(),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.10,
-                              width: MediaQuery.of(context).size.height * 0.12,
-                              child: SingleProduct(
-                                image: orderData.products[0].images[0],
-                              ),
+                           Spacer(),
+                                Padding(
+                              padding: const EdgeInsets.only(right: 5.0),
+                              
+                                child: IconButton(
+                                  onPressed: () {},
+                                  // => deletePrescription(
+                                  //     prescriptionData, index),
+                                  icon: const Icon(
+                                    Icons.delete_outline,
+                                  ),
+                                ),
+                              
                             ),
                           ],
                         ),

@@ -91,7 +91,7 @@ class _profileState extends State<profile> {
                         ),
                         Spacer(),
                         Text(
-                          "Shalini Gupta",
+                          "Jane Doe",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               color: Colors.black,
@@ -124,7 +124,7 @@ class _profileState extends State<profile> {
                         ),
                         Spacer(),
                         Text(
-                          "shalugpt@gmail.com",
+                          "janedoe@gmail.com",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               color: Colors.black,
@@ -157,7 +157,7 @@ class _profileState extends State<profile> {
                         ),
                         Spacer(),
                         Text(
-                          "21",
+                          "23",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               color: Colors.black,

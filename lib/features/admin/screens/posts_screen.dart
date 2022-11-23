@@ -115,7 +115,7 @@ class _PostsScreenState extends State<PostsScreen> {
                                   leading: Text(
                                     productData.name,
                                     style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 10,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                     ),
@@ -126,7 +126,7 @@ class _PostsScreenState extends State<PostsScreen> {
 
                                     style: TextStyle(
                                         color: Colors.green,
-                                        fontSize: 16,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.w500),
                                   ),
                                 ),
@@ -140,11 +140,13 @@ class _PostsScreenState extends State<PostsScreen> {
                 );
               },
             ),
-            floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: navigateToAddProduct,
-              tooltip: 'Add a Product',
-            ),
+            floatingActionButton: 
+             FloatingActionButton(
+                child: const Icon(Icons.add),
+                onPressed: navigateToAddProduct,
+                tooltip: 'Add a Product',
+              ),
+            
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
           );
